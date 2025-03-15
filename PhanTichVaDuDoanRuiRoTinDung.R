@@ -1,14 +1,10 @@
 # Cài đặt và tải các thư viện cần thiết
-install.packages(c("sparklyr", "dplyr", "ggplot2", "readr", "readxl"))
+install.packages(c("dplyr", "ggplot2", "readr", "readxl"))
 
-library(sparklyr)  # Thư viện kết nối và làm việc với Spark
 library(dplyr)     # Thư viện xử lý dữ liệu
 library(ggplot2)   # Thư viện vẽ biểu đồ
 library(readr)     # Đọc tệp CSV
 library(readxl)    # Đọc tệp Excel
-
-# Kết nối với Spark
-sc <- spark_connect(master = "local")
 
 # Đọc dữ liệu từ các tệp
 df <- read.csv("C:/Users/Admin/Downloads/BigData/loan/loan.csv")  # Đọc tệp CSV
@@ -207,6 +203,3 @@ df_selected <- df_selected[df_selected$loan_status != "Current", ]
 
 # Kiểm tra lại loan_status sau khi loại bỏ 'Current'
 unique(df_selected$loan_status)
-
-# Ngắt kết nối với Spark
-spark_disconnect(sc)
